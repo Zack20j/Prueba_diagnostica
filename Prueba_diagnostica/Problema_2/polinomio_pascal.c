@@ -54,6 +54,21 @@ int main() {
 
     long double **coeficientes = generarTrianguloPascal(n);
 
+    fprintf(archivo, "=== TRIANGULO DE PASCAL HASTA n = %d ===\n", n);
+        for (int i = 0; i <= n; i++) {
+            // Espaciado centrado (opcional, para que se vea más bonito)
+            for (int k = 0; k < n - i; k++) {
+                fprintf(archivo, " ");
+            }
+            for (int j = 0; j <= i; j++) {
+                fprintf(archivo, "%.0Lf ", coeficientes[i][j]);
+            }
+            fprintf(archivo, "\n");
+        }
+    fprintf(archivo, "\n");
+
+    fprintf(archivo, "=== CÁLCULO DE f(x) = (x + 1)^%d ===\n", n);
+
     fprintf(archivo, "paso 1: f(x) = ");
     for (int j = 0; j <= n; j++) {
         fprintf(archivo, "%.0Lf*x^%d", coeficientes[n][j], n - j);

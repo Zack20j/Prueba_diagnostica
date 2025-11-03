@@ -1,3 +1,6 @@
+// Dado una cadena C, valide si C se encuentra en notación FEN 
+// (Forsyth-Edwards Notation), Forsyth-Edwards Notation. FEN (Wikipedia, 2025).
+
 #include <stdio.h>
 #include <string.h>
 #include <ctype.h>
@@ -121,7 +124,7 @@ int main() {
 
     printf("Ingresa la cadena FEN: ");
     fgets(fen, 128, stdin);
-    fen[strcspn(fen, "\n")] = 0; // eliminar salto de línea
+    fen[strcspn(fen, "\n")] = 0;
 
     if (validarFEN(fen)) {
         printf("FEN valida\n");
