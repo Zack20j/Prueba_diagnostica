@@ -1,3 +1,6 @@
+// Para un programa escrito en lenguaje C, cargado en una memoria de forma dinámica 
+// verifique si existen palabras reservadas en C y tradúzcalas a su equivalente en español
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -8,43 +11,69 @@ typedef struct {
     char *traduccion;
 } Palabra;
 
-int main() {
-    // Lista de palabras reservadas y sus traducciones
-    Palabra palabras[] = {
-        {"int", "entero"}, {"float", "flotante"}, {"double", "doble"},
-        {"char", "carácter"}, {"if", "si"}, {"else", "sino"},
-        {"while", "mientras"}, {"for", "para"}, {"return", "retornar"},
-        {"switch", "seleccionar"}, {"case", "caso"}, {"break", "romper"},
-        {"continue", "continuar"}, {"void", "vacío"}, {"struct", "estructura"},
-        {"typedef", "definir tipo"}, {"enum", "enumeración"}, {"NULL", "nulo"}
-    };
-    int numPalabras = sizeof(palabras) / sizeof(palabras[0]);
+Palabra palabras[] = {
+    {"auto", "automático"}, {"break", "romper"}, {"case", "caso"}, {"char", "carácter"},
+    {"const", "constante"}, {"continue", "continuar"}, {"default", "predeterminado"},
+    {"do", "hacer"}, {"double", "doble"}, {"else", "sino"}, {"enum", "enumeración"},
+    {"extern", "externo"}, {"float", "flotante"}, {"for", "para"}, {"goto", "ir a"},
+    {"if", "si"}, {"int", "entero"}, {"long", "largo"}, {"register", "registro"},
+    {"return", "retornar"}, {"short", "corto"}, {"signed", "con signo"},
+    {"sizeof", "tamaño de"}, {"static", "estático"}, {"struct", "estructura"},
+    {"switch", "seleccionar"}, {"typedef", "definir tipo"}, {"union", "unión"},
+    {"unsigned", "sin signo"}, {"void", "vacío"}, {"volatile", "volátil"},
+    {"while", "mientras"}, {"NULL", "nulo"}
+};
 
-    // Lectura del texto en memoria dinámica
-    char *codigo = malloc(1024 * sizeof(char)); // Ajustable
-    if (!codigo) {
-        printf("Error de memoria\n");
+int numPalabras = sizeof(palabras) / sizeof(palabras[0]);
+
+const char* traducirPalabra(const char *token) {
+    for (int i = 0; i < numPalabras; i++) {
+        if (strcmp(token, palabras[i].clave) == 0) {
+            return palabras[i].traduccion;
+        }
+    }
+    return NULL; 
+}
+
+int main() {
+    char nombreArchivo[100];
+    FILE *archivo;
+    long tamano;
+    char *codigo;
+
+    printf("Ingrese el nombre del archivo C a analizar (ejemplo: codigo.c): ");
+    scanf("%99s", nombreArchivo);
+
+    archivo = fopen(nombreArchivo, "r");
+    if (!archivo) {
+        perror("Error al abrir el archivo");
         return 1;
     }
 
-    printf("Ingrese el codigo C (una linea):\n");
-    fgets(codigo, 1024, stdin);
+    fseek(archivo, 0, SEEK_END);
+    tamano = ftell(archivo);
+    rewind(archivo);
 
-    // Tokenizar el texto por espacios y símbolos básicos
-    char *delimitadores = " \t\n;(){}[],";
+    codigo = (char *)malloc(tamano + 1);
+    if (!codigo) {
+        printf("Error de memoria\n");
+        fclose(archivo);
+        return 1;
+    }
+
+    fread(codigo, 1, tamano, archivo);
+    codigo[tamano] = '\0';
+    fclose(archivo);
+
+    printf("\n--- Palabras reservadas encontradas y su traducción ---\n\n");
+
+    const char *delimitadores = " \t\n;(){}[],<>+-*/=%\"\'";
     char *token = strtok(codigo, delimitadores);
 
     while (token != NULL) {
-        int encontrado = 0;
-        for (int i = 0; i < numPalabras; i++) {
-            if (strcmp(token, palabras[i].clave) == 0) {
-                printf("%s -> %s\n", token, palabras[i].traduccion);
-                encontrado = 1;
-                break;
-            }
-        }
-        if (!encontrado) {
-            printf("%s -> (no es palabra reservada)\n", token);
+        const char *trad = traducirPalabra(token);
+        if (trad != NULL) {
+            printf("%s -> %s\n", token, trad);
         }
         token = strtok(NULL, delimitadores);
     }

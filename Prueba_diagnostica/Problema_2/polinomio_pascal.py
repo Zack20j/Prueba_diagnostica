@@ -24,10 +24,10 @@ def main():
     coeficientes = generar_triangulo_pascal(n)
 
     with open("resultado.txt", "w", encoding="utf-8") as archivo:
-        archivo.write(f"=== TRIANGULO DE PASCAL HASTA n = {n} ===\n")
-        for fila in coeficientes:
-            archivo.write(" ".join(str(int(c)) for c in fila) + "\n")
-        archivo.write("\n")
+        # archivo.write(f"=== TRIANGULO DE PASCAL HASTA n = {n} ===\n")
+        # for fila in coeficientes:
+        #     archivo.write(" ".join(str(int(c)) for c in fila) + "\n")
+        # archivo.write("\n")
 
         # Paso 1
         archivo.write("paso 1: f(x) = ")

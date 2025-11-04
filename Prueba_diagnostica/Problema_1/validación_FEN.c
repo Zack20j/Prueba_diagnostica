@@ -47,7 +47,7 @@ int validarPosicion(const char *campo) {
             if (columnas != 8) return 0; 
             filas++;
             columnas = 0;
-        } else if (strchr("prnbqkPRNBQK", c)) {
+        } else if (strchr("prnbqkPRNBQK", c)) { 
             columnas++;
         } else {
             return 0; 
