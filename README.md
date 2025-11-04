@@ -1,25 +1,11 @@
 # Proyecto de Programación – Entrega Final
 
-Este repositorio contiene las soluciones a los cuatro problemas asignados para la evaluación del curso de programación. Cada problema está organizado en su propia carpeta con el código fuente y los scripts de instalación de los componentes dependientes del lenguaje.  
-
----
-
-## Estructura del Repositorio
-
-├── Problema1/
-│ └── [Código fuente y README ]
-├── Problema2/
-│ └── [Código fuente y README ]
-├── Problema3/
-│ └── [Código fuente y README ]
-├── Problema4/
-│ └── [Código fuente y README ]
-└── README.md
+Este repositorio contiene las soluciones a los cuatro problemas asignados para la evaluación del curso de programación. Cada problema está organizado en su propia carpeta con el código fuente.  
 
 ---
 
 ## Requisitos Generales
-Instalar un compilador compatible (como GCC):
+Instalar un compilador compatible (como GCC).
 Instalar Python 3 (versión 3.8 o superior).
 
 ---
