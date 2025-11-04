@@ -30,4 +30,4 @@ La defensa de este proyecto se puede ver en el siguiente enlace de YouTube:
 
 1. Clonar el repositorio:
 ```bash
-git clone https://github.com/tu_usuario/tu_repositorio.git
+git clone https://github.com/Zack20j/Prueba_diagnostica.git
