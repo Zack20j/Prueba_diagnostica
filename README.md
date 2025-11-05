@@ -1,4 +1,4 @@
-# Proyecto de Programación – Entrega Final
+# Prueba Diagnostica
 
 Este repositorio contiene las soluciones a los cuatro problemas asignados para la evaluación del curso de programación. Cada problema está organizado en su propia carpeta con el código fuente.  
 
